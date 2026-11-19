@@ -101,3 +101,9 @@ design + judge critique only, never pasted verbatim).
 ## Package size (limits: ≤16 MiB total, ≤8 MiB/file)
 
 152 KiB total; largest file `src/graphql.ts` 35.6 KiB. Well within limits.
+
+## Re-grade after main.ts re-authoring (2026-11-19 21:12 WIB)
+
+`main.ts` was re-authored in a fresh agent session because the kit starter verbatim carries 0 authored lines under the transcript gate (thinking_reproduces fails: entrypoint must have at least one authored line). `tsconfig.json` was re-authored the same way. The new `main.ts` implements the same lifecycle contract (register/done, 30s timeouts, 250ms doubling backoff capped at 2000ms, exit codes), verified against a fake env (happy path, 409, flaky 500s, unset env → exit 1) and by a full local re-grade:
+
+- `grade-local --driver process --worktree`: trial 0 finished, scores agent 200, feature 600, perf 197, **score 997**, working 1 (trial 01a1f427-4293-7283-bb7c-3f01d1952bea). Previous run5: 987 (perf 187). Forge code (`app.ts`, `src/`) unchanged.
